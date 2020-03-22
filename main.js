@@ -8,9 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const elmement = document.createElement('div')
     document.body.appendChild(elmement)
     let elmApp = Elm.Main.init({node:elmement});
-    /* Creates a fullscreen Elm App from our example (Main.elm) */
 
+    /* Subscribe to our port and pass it the default portHandler(msg) function from "/Port/mediaApp.js" */
     elmApp.ports.outbound.subscribe(MediaApp.portHandler);
     elmApp.ports.console.subscribe(console.log);
-    /* Subscribe to our port and pass it the default portHandler(msg) function from "/Port/mediaApp.js" */
 })

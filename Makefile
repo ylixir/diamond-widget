@@ -18,3 +18,15 @@ clean:
 	rm -f package-lock.json
 	rm -f elm.js
 	rm -f widget.js
+
+deploy: widget.js index.html
+	cp widget.js widget.publish
+	cp index.html index.publish
+	git checkout gh-pages
+	mv widget.publish widget.js
+	mv index.publish index.html
+	git add $^
+	git commit -m "deploy"
+	git push
+	git checkout master
+
