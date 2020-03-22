@@ -49,7 +49,7 @@ click state = case playbackStatus state of
   Paused -> play state outbound
   Playing -> pause state outbound
   Loading -> Cmd.none
-  Buffering -> Cmd.none
+  Buffering -> pause state outbound
   Ended -> play state outbound
   PlaybackError _ -> Cmd.batch [console "playback error", play state outbound]
 
@@ -83,7 +83,7 @@ widget: Model -> Html Msg
 widget model = 
   div
     [ style "display" "inline-flex"
-    , style "position" "absolute"
+    , style "position" "fixed"
     , style "bottom" "0"
     , style "right" "45px"
     , style "border-style" "solid"
@@ -144,12 +144,16 @@ toggleButton state = span
       , style "width" "45px"
       ] []
     Loading -> img
-      [ src "https://upload.wikimedia.org/wikipedia/commons/7/7b/Octicons-playback-play.svg"
+      [ src "https://upload.wikimedia.org/wikipedia/commons/f/fa/Octicons-playback-pause.svg"
       , style "width" "45px"
-      , style "transform" "scaleX(-1)"
+      , style "transform" "rotate(90deg)"
       ] []
-    Buffering -> text "B"
-    PlaybackError _ -> text "E"
+    Buffering -> img
+      [ src "https://upload.wikimedia.org/wikipedia/commons/f/fa/Octicons-playback-pause.svg"
+      , style "width" "45px"
+      , style "transform" "rotate(90deg)"
+      ] []
+    PlaybackError _ -> text "Error"
   ]
 
 seeker: Seeked -> Media.State -> Html Msg

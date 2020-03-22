@@ -15,4 +15,4 @@ window.diamondWidget = {
 	elmApp.ports.console.subscribe(console.log);
     }
 }
-window.addEventListener("DOMContentLoaded", diamondWidget.init)
+window.addEventListener("DOMContentLoaded", window.diamondWidget.init)
