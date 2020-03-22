@@ -1,7 +1,7 @@
 {
     "git-dependencies": {
         "direct": {
-            "git@github.com:ylixir/ylm-media.git": "master"
+            "git@github.com:ylixir/ylm-media.git": "2f3f5d1"
         },
         "indirect": {}
     }
