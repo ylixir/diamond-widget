@@ -3,7 +3,7 @@ PROJECT_NAME := $(notdir $(CURDIR))
 ELM := npx elm
 
 widget.js: elm.js main.js elm-stuff/gitdeps/github.com/ylixir/ylm-media.git/Port/mediaApp.js
-	cat $^ > $@
+	cat $^ | npx terser --compress --mangle > $@
 
 elm.js: src/Main.elm elm.json package-lock.json
 	${ELM} make --optimize src/Main.elm --output $@
